@@ -63,26 +63,18 @@ class OrderRepositoryTest {
         order.setCanceled(false);
         order.setProducts(products);
 
-        try {
+        assertThrows(OrderException.class, () -> {
             orderRepository.saveOrder(order);
-        } catch (OrderException exp) {
-            log.info(exp.getMessage());
-        }
-
-        assertNull(order.getId());
+        });
 
     }
 
     @Test
     void testSaveOrderWithoutOrder () {
         Order fakeOrder = new Order();
-        try {
-            orderRepository.saveOrder(fakeOrder);
-        } catch (OrderException ex) {
-            log.info(ex.getMessage());
-        }
-
-        assertNull(fakeOrder.getId());
+        assertThrows(OrderException.class, () -> {
+            orderRepository.saveOrder(order);
+        });
 
     }
 
@@ -92,18 +84,14 @@ class OrderRepositoryTest {
         Customer customer = optionalCustomer.get();
         assertNotNull(customer.getId());
 
-        order.setDate("20=10-20");
+        order.setDate("20-10-20");
         order.setDelivered(false);
         order.setCanceled(false);
         order.setCustomer(customer);
-//        order.setProducts(products);
 
-        orderRepository.save(order);
-
-        assertNull(order.getId());
-
-
+       assertThrows(OrderException.class, () -> {
+           orderRepository.saveOrder(order);
+        });
     }
-
 
 }
