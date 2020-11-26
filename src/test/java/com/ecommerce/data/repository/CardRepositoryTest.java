@@ -25,18 +25,19 @@ class CardRepositoryTest {
 
     Card card;
 
+
     @BeforeEach
     void setUp() {
         card = new Card();
     }
 
     @Test
-    void testThatWeCanSaveCard() {
-        card.setCardName("Jacqueline Casper");
-        card.setCardNumber("12345674459");
+    void testThatWeCanSaveCard () {
+        card.setCardName("Fola Ope");
+        card.setCardNumber("201002333444");
         card.setCardType("MasterCard");
-        card.setCvv(212);
-        card.setExpDate("23/12/2022");
+        card.setCvv(230);
+        card.setExpDate("1-10-24");
 
         Customer customer = customerRepository.findById(1).orElse(null);
 
@@ -46,8 +47,7 @@ class CardRepositoryTest {
 
         assertThat(card.getId()).isNotNull();
 
-        log.info("card--> ()", card);
-
+        log.info("card -> {}", card);
     }
 
     @Test
@@ -65,7 +65,7 @@ class CardRepositoryTest {
         assertThat(card.getId()).isNotNull();
         assertThat(card.getCustomer()).isNotNull();
 
-        log.info("card--> ()", card);
+        log.info("card -> {}", card);
     }
 
 }

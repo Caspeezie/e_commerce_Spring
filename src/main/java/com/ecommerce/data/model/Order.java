@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name="order_tb")
+@Table(name = "order_tb")
 public class Order {
 
     @Id
@@ -18,10 +18,9 @@ public class Order {
     private Customer customer;
 
     private String date;
-    private Boolean delivered;
-    private Boolean status;
+    private boolean delivered;
+    private boolean canceled;
 
     @ManyToMany
     private List<Product> products;
-
 }

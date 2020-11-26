@@ -23,12 +23,12 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testWeCanCreateAproduct () {
+    void testThatWeCanSaveAProduct () {
         product.setName("Garlic");
         product.setPrice(200.00);
-        product.setDescription("Garlic creates antibodies");
-        product.setExpDate("12/12/2022");
-        product.setQuantity(1500);
+        product.setDescription("Garlic is sweet");
+        product.setExpDate("12-10-12");
+        product.setQuantity(10);
 
         productRepository.save(product);
         assertThat(product.getId()).isNotNull();

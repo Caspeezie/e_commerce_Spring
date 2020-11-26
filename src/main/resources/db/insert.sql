@@ -4,6 +4,8 @@ truncate table customer;
 truncate table address;
 truncate table customer_addresses;
 truncate table card;
+truncate table product;
+truncate table order_tb;
 
 insert into address (`id`, `city`, `country`, `state`, `street`, `zipcode`)
 values (1, "Yaba", "Nigeria", "Lagos", "312 Herbert Macaulay way, Sabo", "100110"),
@@ -20,8 +22,15 @@ values (1, 1),
        (1, 2),
        (2, 2);
 
-insert into card (`id`, `card_name`, `card_number`, `card_type`, `cvv`, `exp_date`, `customer_id`)
-values (1, "Freddy Krueger", "1234555890", "MasterCard", 325, "23/12/2027", 1),
-       (2, "iClass Chima", "1234567890", "Visa", 225, "23/12/2022", 2);
+
+insert into card (`id`,`card_name`, `card_number`, `card_type`,`cvv`,`exp_date`, `customer_id`)
+values (1, "Samuel Omo", "20139393222", "MasterCard", 109, "2-5-20", 1 ),
+       (2, "iClass Chima", "5666800015546", "Visa", 120, "12-10-21", null );
+
+insert into product (`id`, `name`, `description`, `price`, `quantity`, `exp_date`)
+values (1, "Garlic", "Sweet garlic", 50.00, 4, "10-10-21"),
+       (2, "Potatoes", "Fresh potatoes", 75.00, 8, "10-10-25"),
+       (3, "Ginger", "Better ginger", 30.00, 6, "1-4-22");
+
 
 set foreign_key_checks = 1;

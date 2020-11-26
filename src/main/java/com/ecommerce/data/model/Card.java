@@ -1,12 +1,14 @@
 package com.ecommerce.data.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 public class Card {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,12 +20,13 @@ public class Card {
     private String expDate;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-//    @Column(nullable = false)
     private Customer customer;
+
 
     public void setCustomer (Customer customer) {
         if (getCustomer() == null) {
             this.customer = customer;
         }
     }
+
 }
