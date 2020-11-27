@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,8 +47,25 @@ class ProductServiceImplTest {
 
     @Test
     void testWeCanCallTheDeleteProductByIdRepository () {
-
+        doNothing().when(productRepository).deleteById(2);
+        productService.deleteProductById(2);
+        verify(productRepository, times(1)).deleteById(2);
     }
 
+    @Test
+    void testWeCanCallTheFindAllProductRepository () {
+        List<Product> productList = new ArrayList<>();
+
+        when(productRepository.findAll()).thenReturn(productList);
+        productService.findAllProduct();
+        verify(productRepository, times(1)).findAll();
+    }
+
+    @Test
+    void testWeCanCallTheUpdateProductRepository () {
+        when(productRepository.save(product)).thenReturn(product);
+        productService.updateProduct(product);
+        verify(productRepository, times(1)).save(product);
+    }
 
 }

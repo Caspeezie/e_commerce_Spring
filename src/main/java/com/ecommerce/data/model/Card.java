@@ -19,7 +19,8 @@ public class Card {
     private String cardName;
     private String expDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToOne
+    @ToString.Exclude
     private Customer customer;
 
 
