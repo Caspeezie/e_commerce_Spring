@@ -58,5 +58,29 @@ class CustomerControllerTest {
                 .andReturn();
     }
 
+    @Test
+    void testUpdateCustomerEndpoint_thenReturnOkay () throws Exception{
+        customer.setFirstName("Sadiq");
+
+        this.mockMvc.perform(
+                post("/customer/update")
+                .contentType("application/json")
+                .content(mapper.writeValueAsString(customer))
+                ).andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+    }
+
+
+
+//    @Test
+//    void testDeleteCustomerEndpoint() {
+//        customer.getId();
+//
+//        this.mockMvc.perform(
+//                get("/customer/delete/{id}")
+//
+//        )
+//    }
 
 }

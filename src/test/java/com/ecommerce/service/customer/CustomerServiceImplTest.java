@@ -1,20 +1,16 @@
 package com.ecommerce.service.customer;
 
 import com.ecommerce.data.model.Customer;
-import com.ecommerce.data.model.Order;
 import com.ecommerce.data.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class CustomerServiceImplTest {
@@ -29,7 +25,7 @@ class CustomerServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks (this);
         customer = new Customer();
     }
 
@@ -41,34 +37,31 @@ class CustomerServiceImplTest {
     }
 
     @Test
-    void testThatWecanCallTheFindCustomerByIdRespository () {
-        when(customerRepository.findById(2)).thenReturn(Optional.of(customer));
-        customerService.findByCustomerId(2);
-        verify(customerRepository, times(1)).findById(2);
+    void testThatWeCanCallTheFindCustomerByIdRepository () {
+        when(customerRepository.findById(1)).thenReturn(Optional.of(customer));
+        customerService.findByCustomerId(1);
+        verify(customerRepository, times(1)).findById(1);
     }
 
     @Test
-    void testThatWeCanCallTheFindAllCustomerRepository () {
-        List<Customer> customerList = new ArrayList<>();
-
-        when(customerRepository.findAll()).thenReturn(customerList);
+    void testThatWeCanCallFindAllCustomerRepository () {
+        when(customerRepository.findAll()).thenReturn(List.of(customer));
         customerService.findAllCustomer();
         verify(customerRepository, times(1)).findAll();
     }
 
     @Test
-    void testThatWeCanCallTheDeleteCustomerById () {
-        doNothing().when(customerRepository).deleteById(2);
-        customerService.deleteCustomerById(2);
-        verify(customerRepository, times(1)).deleteById(2);
+    void testThatWeCanCallDeleteCustomerRepository () {
+        doNothing().when(customerRepository).deleteById(1);
+        customerService.deleteCustomerById(1);
+        verify(customerRepository, times(1)).deleteById(1);
     }
 
     @Test
-    void testThatWeCanCallTheUpdateCustomer () {
+    void testThatWeCanCallTheUpdateCustomerRepository () {
         when(customerRepository.save(customer)).thenReturn(customer);
         customerService.updateCustomer(customer);
         verify(customerRepository, times(1)).save(customer);
     }
-
 
 }

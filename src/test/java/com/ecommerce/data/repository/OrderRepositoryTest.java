@@ -46,10 +46,7 @@ class OrderRepositoryTest {
         order.setCustomer(customer);
         order.setProducts(products);
 
-        orderRepository.save(order);
-
-        assertNotNull(order);
-        assertNotNull(order.getId());
+        assertDoesNotThrow(() ->  orderRepository.saveOrder(order));
 
     }
 
@@ -58,7 +55,7 @@ class OrderRepositoryTest {
 
         List<Product> products = productRepository.findAll();
 
-        order.setDate("20=10-20");
+        order.setDate("20-10-20");
         order.setDelivered(false);
         order.setCanceled(false);
         order.setProducts(products);
@@ -72,9 +69,10 @@ class OrderRepositoryTest {
     @Test
     void testSaveOrderWithoutOrder () {
         Order fakeOrder = new Order();
-        assertThrows(OrderException.class, () -> {
-            orderRepository.saveOrder(order);
-        });
+
+       assertThrows(OrderException.class, () -> {
+           orderRepository.saveOrder(fakeOrder);
+       });
 
     }
 
@@ -89,9 +87,9 @@ class OrderRepositoryTest {
         order.setCanceled(false);
         order.setCustomer(customer);
 
-       assertThrows(OrderException.class, () -> {
-           orderRepository.saveOrder(order);
+        assertThrows(OrderException.class, () -> {
+            orderRepository.saveOrder(order);
         });
-    }
 
+    }
 }

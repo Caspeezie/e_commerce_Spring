@@ -12,25 +12,22 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
         } else if (!orderHasProducts(order)) {
             throw new OrderException("Order must have products");
         }
-
         save(order);
         return order;
     }
 
-    private boolean orderHasCustomer(Order order) {
+    private boolean orderHasCustomer (Order order) {
+
         if (order.getCustomer() == null) {
-            return false;
+           return false;
         }
         return true;
     }
 
     private boolean orderHasProducts (Order order) {
-
         if (order.getProducts() == null) {
             return false;
         }
-
         return true;
     }
-
 }

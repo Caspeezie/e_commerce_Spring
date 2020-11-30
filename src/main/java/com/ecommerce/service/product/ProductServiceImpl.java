@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl  implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
@@ -29,7 +29,7 @@ public class ProductServiceImpl  implements ProductService{
     }
 
     @Override
-    public List<Product> findAllProduct() {
+    public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
 

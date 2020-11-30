@@ -25,11 +25,10 @@ public class Address {
     @ToString.Exclude
     private List<Customer> customers;
 
-    public  void setCustomers (Customer customer) {
+    public void setCustomers (Customer customer) {
         if (customers == null) {
             customers = new ArrayList<>();
         }
         customers.add(customer);
     }
-
 }
